@@ -1,0 +1,63 @@
+{
+  "name": "cat-desktop-pet",
+  "version": "0.1.0",
+  "description": "Windows-first desktop cat pet with an always-on-top companion window and local settings panel.",
+  "main": "dist-electron/main/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:renderer\" \"npm:dev:main\" \"npm:dev:electron\"",
+    "dev:renderer": "vite --host 127.0.0.1",
+    "dev:main": "tsc -p tsconfig.electron.json --watch --preserveWatchOutput",
+    "dev:electron": "wait-on tcp:5173 dist-electron/main/main.js && electron .",
+    "start": "npm run build && electron .",
+    "electron": "electron .",
+    "build": "tsc -p tsconfig.electron.json && vite build",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.electron.json --noEmit",
+    "dist": "npm run build && electron-builder",
+    "install:electron:cn": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$env:npm_config_electron_mirror='https://npmmirror.com/mirrors/electron/'; node .\\node_modules\\electron\\install.js\""
+  },
+  "keywords": [
+    "electron",
+    "desktop-pet",
+    "cat",
+    "react"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "electron": "^39.2.7",
+    "lucide-react": "^0.561.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "concurrently": "^9.2.1",
+    "electron-builder": "^26.0.12",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.7",
+    "wait-on": "^9.0.3"
+  },
+  "build": {
+    "appId": "com.local.catdesktop.pet",
+    "productName": "猫猫桌面宠物",
+    "files": [
+      "dist-electron/**/*",
+      "dist-renderer/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

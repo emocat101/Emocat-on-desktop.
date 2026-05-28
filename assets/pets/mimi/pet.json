@@ -1,0 +1,56 @@
+{
+  "id": "mimi",
+  "name": "橘子咪咪",
+  "description": "内置的第一只桌面小猫，使用应用内动态渲染作为默认展示。",
+  "author": "猫猫桌面宠物",
+  "actions": [
+    {
+      "name": "idle",
+      "label": "待机",
+      "type": "generated",
+      "fps": 8,
+      "loop": true,
+      "triggers": ["mode:companion", "idle"]
+    },
+    {
+      "name": "walk",
+      "label": "走动",
+      "type": "generated",
+      "fps": 10,
+      "loop": true,
+      "triggers": ["idle-random", "follow-cursor"]
+    },
+    {
+      "name": "sleep",
+      "label": "睡觉",
+      "type": "generated",
+      "fps": 6,
+      "loop": true,
+      "triggers": ["mode:sleep", "idle-random"]
+    },
+    {
+      "name": "happy",
+      "label": "开心",
+      "type": "generated",
+      "fps": 12,
+      "loop": true,
+      "triggers": ["double-click", "mode:active"]
+    },
+    {
+      "name": "touch",
+      "label": "摸摸",
+      "type": "generated",
+      "fps": 12,
+      "loop": true,
+      "triggers": ["click"]
+    },
+    {
+      "name": "eat",
+      "label": "喂食",
+      "type": "generated",
+      "fps": 8,
+      "loop": true,
+      "triggers": ["manual"]
+    }
+  ]
+}
